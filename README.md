@@ -19,6 +19,7 @@ TODO: 점수판 추가, 리롤 횟수 감지(+UI)
 2. 주사위 눈 패턴에 맞는 역이 없을 경우에 리롤하는 횟수를 감지해서 3번 이상일 경우 패배했다는 이미지를 화면 가운데 출력
 
 TODO: 코드 정리 필요, 재시작, 종료 등 행동에 대한 화면 출력 구상
+
 <img width="561" height="314" alt="image" src="https://github.com/user-attachments/assets/bf1b4a4a-ea95-4f9f-b926-2b0f4eed0996" />
 주사위 눈에 맞는 역이 있을 경우
 
