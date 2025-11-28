@@ -10,5 +10,20 @@
 2. 친치로(영문 'Cee-lo') 족보에 따라 주사위 눈 패턴 감지
    및 이전 결과를 출력하는 UI가 초기화 되도록 하는 스크립트 'DiceManager.cs' 추가
 3. 주사위를 던진 직후 주사위가 바닥에서 떨어지는 순간에 주사위 눈을 인식하는 문제 수정
+
 TODO: 점수판 추가, 리롤 횟수 감지(+UI)
 <img width="1580" height="886" alt="image" src="https://github.com/user-attachments/assets/8d4ef23c-56d9-4636-8010-aeb190e20fc5" />
+
+**25.11.28.**
+1. 스크립트 'ScoreManager.cs', 'GameManager.cs' 추가, 점수판 UI를 만들고 GameManager를 통해 버튼의 온 클릭 이벤트 리스트 정리
+2. 주사위 눈 패턴에 맞는 역이 없을 경우에 리롤하는 횟수를 감지해서 3번 이상일 경우 패배했다는 이미지를 화면 가운데 출력
+
+TODO: 코드 정리 필요, 재시작, 종료 등 행동에 대한 화면 출력 구상
+<img width="561" height="314" alt="image" src="https://github.com/user-attachments/assets/bf1b4a4a-ea95-4f9f-b926-2b0f4eed0996" />
+주사위 눈에 맞는 역이 있을 경우
+
+<img width="565" height="316" alt="image" src="https://github.com/user-attachments/assets/21a4e2c2-6861-4283-96c4-3c584bcbff43" />
+주사위 눈에 맞는 역이 없을 경우
+
+<img width="566" height="314" alt="image" src="https://github.com/user-attachments/assets/b307840d-a004-4b16-b84a-c7698dfdce52" />
+리롤 3회 이상이 됐을 경우
