@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class DiceManager : MonoBehaviour
 {
+    public ScoreManager scoreManager;
+    public GameManager gameManager;
     private Dictionary<string, int> _diceFaces = new Dictionary<string, int>();
 
     public TextMeshProUGUI patternResult;
     public int totalDiceCount = 3;
     private Dictionary<string, bool> _diceStatus = new Dictionary<string, bool>();
+
+    private int indeterminateReroll = 0;
 
     void Start()
     {
@@ -22,6 +26,12 @@ public class DiceManager : MonoBehaviour
         _diceStatus["d63"] = false;
 
         if (patternResult != null) patternResult.text = "Roll Dice!";
+
+        if (scoreManager == null)
+        {
+            enabled = false;
+            return;
+        }
     }
 
     public void SetDiceFace(string diceName, int faceValue)
@@ -78,21 +88,30 @@ public class DiceManager : MonoBehaviour
 
         if (d1 == d2 && d2 == d3)
         {
-            if (d1 == 1) return "Pinzoro - score: +100";
-            else return $"Tripple - score: +({d1} * 13)";
+            if (d1 == 1) { scoreManager.AddScore(100); return "Pinzoro"; }
+            else { scoreManager.AddScore(d1 * 14); return $"Arashi"; }
         }
-        else if (d1 == 1 && d2 == 2 && d3 == 3) 
-            return "1-2-3 - No score";
+        else if (d1 == 1 && d2 == 2 && d3 == 3) return "Hihumi - No score";
         else if (d1 == 4 && d2 == 5 && d3 == 6) 
-            return "4-5-6 - score: +9";
+            { scoreManager.AddScore(13); return "Shigoro"; }
         else if (d1 == d2 || d2 == d3)
         {
             int same, diff;
+
             if (d1 == d2) { same = d1; diff = d3; }
             else { same = d2; diff = d1; }
-            return $"pair ({same}, {diff}, {same}) - score: {diff} * 2";
+
+            scoreManager.AddScore(diff * 2);
+
+            return $"pair ({same}, {diff}, {same})";
         }
-        else return "Indeterminate - Re-roll";
+        else {
+            if (++indeterminateReroll >= 3) {
+                gameManager.instance.gameEnd.SetActive(true);
+                return "All chance has ran out";
+            }
+            return "Indeterminate - Re-roll";
+        }
     }
 
     public void ResetDice()

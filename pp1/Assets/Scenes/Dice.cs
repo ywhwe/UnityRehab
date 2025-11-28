@@ -3,6 +3,7 @@ using UnityEngine;
 public class Dice : MonoBehaviour
 {
     private Rigidbody rb;
+    public bool canCheck = false;
     public static Vector3 diceVelocity;
 
     private int[] angles = {0, 90, 180, 270, 360};
@@ -48,4 +49,9 @@ public class Dice : MonoBehaviour
 		rb.AddForce(Vector3.up * ForceRand, ForceMode.Impulse);
 		rb.AddTorque(new Vector3(dirX, dirY, dirZ), ForceMode.Impulse);
 	}
+
+    public void ResetPosition()
+    {
+        this.transform.position = new Vector3(Random.Range(-1, 1), 0.69f, Random.Range(-1, 1));
+    }
 }

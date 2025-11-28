@@ -11,8 +11,11 @@ public class CheckZone : MonoBehaviour
     private bool _d61ReportedSettled = false;
     private bool _d62ReportedSettled = false;
     private bool _d63ReportedSettled = false;
+    private bool _isDetectionEnabled = false;
 
     void OnTriggerStay(Collider other) {
+        if (!_isDetectionEnabled) return;
+
         Transform parentT = other.transform.parent;
         GameObject detected = null;
         Rigidbody detectedRb = null;
@@ -70,35 +73,26 @@ public class CheckZone : MonoBehaviour
                         default : text.text = "???"; break;
                     }
 
-                    if (diceManager != null) diceManager.SetDiceFace(detected.name, faceValueInt);
+                    if (diceManager != null) {
+                        diceManager.SetDiceFace(detected.name, faceValueInt);
+                        
+                    }
                     else Debug.LogError("[CheckZone] DiceManager 연결 안됨...");
                 }
             }
         }
     }
 
-    // private void OnTriggerExit(Collider other) {
-    //     GameObject parentDiceObject = null;
-    //     if (other.transform.parent != null) parentDiceObject = other.transform.parent.gameObject;
-    //     else parentDiceObject = other.gameObject;
-
-    //     if (parentDiceObject != null)
-    //     {
-    //         TextMeshProUGUI target = null;
-
-    //         switch (parentDiceObject.name)
-    //         {
-    //             case "d61" : target = d61Text; break;
-    //             case "d62" : target = d62Text; break;
-    //             case "d63" : target = d63Text; break;
-    //         }
-
-    //         if (target != null) target.text = "";
-    //     }
-    // }
+    public void EnableDetection()
+    {
+        _isDetectionEnabled = true;
+        Debug.Log("[CheckZone] 주사위 면 감지 활성화");
+    }
 
     public void ResetAllDice()
     {
+        _isDetectionEnabled = false;
+
         if (diceManager != null)
         {
             diceManager.ResetDice();
