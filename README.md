@@ -28,3 +28,21 @@ TODO: 코드 정리 필요, 재시작, 종료 등 행동에 대한 화면 출력
 
 <img width="566" height="314" alt="image" src="https://github.com/user-attachments/assets/b307840d-a004-4b16-b84a-c7698dfdce52" />
 리롤 3회 이상이 됐을 경우
+
+**25.12.02.**
+1. DiceManager에서 점수에 직접적으로 영향을 주지 않고 GameManager를 경유하도록 코드 수정
+2. 역 없음이 3번 나올 경우 화면 중앙에 최종 점수와 재시작, 종료 버튼을 출력
+
+TODO: 주사위 회전토크 또는 투명 벽 범위 수정(xz평면에서 너무 튀어나감), 종료화면 출력 시 주사위 굴리는 버튼 상호작용 막기
+
+에디터 초기화면 - 플레이 시 중앙 화면 비활성화
+<img width="1579" height="882" alt="image" src="https://github.com/user-attachments/assets/327498e1-6656-4775-bf1e-4fb935d00736" />
+
+현재 주사위 눈 패턴과 맞는 역이 있으면 그에 해당하는 점수 추가 후 패널 출력, 없으면 역 없음 표시 후 내부 카운팅 변수에 +1
+![diceRolling](https://github.com/user-attachments/assets/04f31273-99ba-412e-adea-72df76eb24bb)
+
+역 없음 3회 시 종료 화면 출력 아래 gif는 재시작 클릭(재시작 시 내부 카운팅 변수 0으로 초기화)
+![Retry](https://github.com/user-attachments/assets/e64c844e-9e38-4977-ba6b-460fc6340970)
+
+위와 동일하나 종료 버튼 클릭, 에디터 종료(#if #endif로 에디터일 경우와 아닐 경우로 분리)
+![exit](https://github.com/user-attachments/assets/4e0bb58e-bff5-4007-bf50-61869dd5ef60)
