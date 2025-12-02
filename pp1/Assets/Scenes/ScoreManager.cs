@@ -24,7 +24,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null) scoreText.text = $"{_currentTotalScore} <color=#FFD700>+{scoreToAdd}</color>";
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
 
         _currentTotalScore += scoreToAdd;
         UpdateScoreDisplay(_currentTotalScore.ToString());
@@ -34,6 +34,11 @@ public class ScoreManager : MonoBehaviour
     private void UpdateScoreDisplay(string textToDisplay)
     {
         if (scoreText != null) scoreText.text = textToDisplay;
+    }
+
+    public int GetTotalScore()
+    {
+        return _currentTotalScore;
     }
 
     public void SetTotalScore(int newScore)
