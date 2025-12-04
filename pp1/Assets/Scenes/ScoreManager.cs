@@ -36,9 +36,9 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null) scoreText.text = textToDisplay;
     }
 
-    public int GetTotalScore()
+    public string GetTotalScore()
     {
-        return _currentTotalScore;
+        return _currentTotalScore.ToString();
     }
 
     public void SetTotalScore(int newScore)
