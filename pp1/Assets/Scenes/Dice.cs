@@ -3,7 +3,6 @@ using UnityEngine;
 public class Dice : MonoBehaviour
 {
     private Rigidbody rb;
-    public bool canCheck = false;
     public static Vector3 diceVelocity;
 
     private int[] angles = {0, 90, 180, 270, 360};
@@ -31,9 +30,9 @@ public class Dice : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
-        float dirX = Random.Range(0, 10);
-		float dirY = Random.Range(0, 10);
-		float dirZ = Random.Range(0, 10);
+        float dirX = Random.Range(3, 5);
+		float dirY = Random.Range(3, 10);
+		float dirZ = Random.Range(3, 5);
         
 		Quaternion currentRotation = transform.localRotation;
 		float randomIndex_x = Random.Range(0, angles.Length);
@@ -45,13 +44,17 @@ public class Dice : MonoBehaviour
             angles[(int)randomIndex_z]
             );
 
-		float ForceRand = Random.Range(10, 20);
+        float curY = transform.position.y;
+		float ForceRand = Random.Range(10, 15);
+
+        if (curY > 1f) ForceRand *= 0.3f;
+
 		rb.AddForce(Vector3.up * ForceRand, ForceMode.Impulse);
 		rb.AddTorque(new Vector3(dirX, dirY, dirZ), ForceMode.Impulse);
 	}
 
     public void ResetPosition()
     {
-        this.transform.position = new Vector3(Random.Range(-1, 1), 0.69f, Random.Range(-1, 1));
+        this.transform.position = new Vector3(Random.Range(-3, 3), 0.69f, Random.Range(-3, 3));
     }
 }

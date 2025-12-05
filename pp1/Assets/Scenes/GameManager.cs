@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InitialGameSetup();
+        Time.timeScale = 1.5f;
     }
 
     public void InitialGameSetup()
